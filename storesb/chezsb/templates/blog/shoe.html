@@ -1,0 +1,145 @@
+{% extends 'blog/disposition.html' %}
+
+
+{% load static %}
+
+{% block content %}
+
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>Voir les articles !?</p>
+					<h1>Annonce chaussures</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- single article section -->
+<div class="mt-150 mb-150">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="single-article-section">
+					<div class="single-article-text">
+						<a href=""><img src="{{ articles.image.url }}" alt="" id="image-{{ article.id }}"></a>
+						<p class="blog-meta">
+							<span class="author"><i class="fas fa-user"></i> <span
+									id="author-{{ article.author_id }}">{{ articles.author }}</span></span>
+							<span class="date"><i class="fas fa-calendar"></i> <span
+									id="date-{{ article.date_created_id }}"> {{ articles.date_created }}</span></span>
+						</p>
+						<h2><span id="title-{{ article.title_id }}">{{ articles.title }}</span></h2>
+						<p>{{ articles.description }}</p>
+					</div>
+
+
+					<div class="comments-list-wrap">
+						<h3 class="comment-count-title">{{ comments.count }} Commentaire(s)</h3>
+						{% for comment in comments %}
+						<div class="comment-list">
+							<div class="single-comment-body">
+								<div class="comment-user-avater">
+									<img src="{{ comment.avatar.url }}" alt="">
+								</div>
+								<div class="comment-text-body">
+									<h4>{{ comment.name }} <span class="comment-date">{{ comment.date_add }}</span> <a
+											href="#" class="reply-link">Répondre</a></h4>
+									<p>{{ comment.comment }}</p>
+								</div>
+								{% for reply in replys %}
+								<div class="single-comment-body child">
+									<div class="comment-text-body">
+										<h4> {{ reply.nom }} <span class="comment-date">{{ reply.date_add }}</span> <a
+												href="#">Répondre</a></h4>
+										<p>{{ reply.message }}</p>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+							<div class="comment-template" style="display:none;">
+								<h4>Répondre au commentaire</h4>
+								<p>Si vous avez remarqué, n'hésitez pas à nous faire part de votre opinion.</p>
+								<form method="POST">
+									{% csrf_token %}
+									<input type="hidden" name="parent_id" value="{{ comment.id }}">
+									<p>
+										<input type="text" placeholder="Votre nom" name="nom" id="nom">
+									</p>
+									<p>
+										<textarea name="message" id="message" cols="30" rows="10"
+											placeholder="Votre message"></textarea>
+									</p>
+									<p>
+										{% if user.is_authenticated %}
+										<input type="submit" id="form-submit" value="Envoyer">
+										{% else %}
+										<a href="{% url 'login' %}" class="cart-btn" id="add-to-cart-btn"><i
+												class="fas fa-shopping-cart"></i>Connectez vous avant de commenter</a>
+										{% endif %}
+									</p>
+								</form>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+					<div class="comment-template">
+						<h4>Leave a comment</h4>
+						<p>If you have a comment dont feel hesitate to send us your opinion.</p>
+						<form method="POST" id="request" >
+							{% csrf_token %}
+							<p>
+								<input type="text" value="{{ user.username }}" name="name" id="name" readonly>
+								<input type="email" value="{{ user.email }}" name="email" id="email"readonly>
+							</p>
+							<p>
+								<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Your Message" required></textarea>
+							</p>
+							<p>
+								{% if user.is_authenticated %}
+								<input type="submit" id="form-submit" value="Submit">
+								{% else %}	
+								<a href="{% url 'login' %}" class="cart-btn" id="add-to-cart-btn"><i class="fas fa-shopping-cart"></i>Connectez vous avant de commenter</a>
+								{% endif %}	
+
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- end single article section -->
+
+
+		<!-- end copyright -->
+
+		<!-- jquery -->
+		<script src="{% static 'assets/js/jquery-1.11.3.min.js' %}"></script>
+		<!-- bootstrap -->
+		<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+		<!-- count down -->
+		<script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+		<!-- isotope -->
+		<script src="{% static 'assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+		<!-- waypoints -->
+		<script src="{% static 'assets/js/waypoints.js' %}"></script>
+		<!-- owl carousel -->
+		<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+		<!-- magnific popup -->
+		<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+		<!-- mean menu -->
+		<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+		<!-- sticker js -->
+		<script src="{% static 'assets/js/sticker.js' %}"></script>
+		<!-- main js -->
+		<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+		{% endblock content %}

@@ -1,0 +1,71 @@
+{% extends 'blog/disposition.html' %}
+
+{% load static %}
+
+{% block content %}
+
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Informations sur le catalogue</p>
+						<h1>Catalogue de chaussures pour femmes</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- latest news -->
+	<div class="latest-news mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				{% for chaussure in chaussures %}
+				<div class="col-lg-4 col-md-6">
+				  <div class="single-latest-news">
+					<a href="{% url 'shoe' article.id %}"><img src="{{ article.image.url }}" alt="" id="image-{{ article.id }}"></a>
+					<div class="news-text-box">
+					  <h3><a href="{% url 'shoe' article.id %}">{{ chaussure.nom }}</a></h3>
+					  <p class="blog-meta">
+						<span class="prix">Prix: {{ chaussure.prix }} €</span>
+					  </p>
+					  <p class="excerpt">{{ chaussure.description|truncatechars:100 }}...</p>
+					  <a href="{% url 'shoe' article.id %}" class="read-more-btn">En savoir plus <i class="fas fa-angle-right"></i></a>
+					</div>
+				  </div>
+				</div>
+				{% endfor %}
+			  </div>
+			
+			<div class="text-center">
+				<a href="{% url 'create_annonce' %}" class="primary-btn btn-lg">Créer une annonce</a>
+			</div>
+		</div>
+	</div>
+	<!-- end latest news -->
+
+	<!-- jQuery -->
+	<script src="{% static 'assets/js/jquery-1.11.3.min.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Count Down -->
+	<script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+	<!-- Isotope -->
+	<script src="{% static 'assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'assets/js/waypoints.js' %}"></script>
+	<!-- Owl Carousel -->
+	<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- Mean Menu -->
+	<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+	<!-- Sticker JS -->
+	<script src="{% static 'assets/js/sticker.js' %}"></script>
+	<!-- Main JS -->
+	<script src="{% static 'assets/js/main.js' %}"></script>
+
+{% endblock content %}

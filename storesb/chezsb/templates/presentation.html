@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Page de présentation - Chez S&B</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+        }
+        .description {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .description p:first-child {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{% static 'logo.png' %}" alt="Logo Chez S&B" class="logo">
+        <h1>Bienvenue chez Chez S&B</h1>
+        <div class="description">
+            <p>Expérience de shopping exceptionnelle</p>
+            <p>Découvrez notre sélection de chaussures tendance et de qualité pour femmes arrrrrrr.</p>
+        </div>
+    </div>
+</body>
+</html>

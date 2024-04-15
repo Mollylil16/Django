@@ -1,0 +1,48 @@
+{% extends 'blog/disposition.html' %}
+{% load static %}
+{% block content %}
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Besoin d'aide 24/7</p>
+                    <h1>Créer une annonce</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-from-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="form-title">
+                    <h2>Avez-vous des questions ?</h2>
+                    <p>Veuillez remplir le formulaire ci-dessous pour créer une annonce.</p>
+                </div>
+                <div class="contact-form">
+                    <form id="request" method="post" enctype="multipart/form-data" action="{% url 'create_annonce' %}">
+                        {% csrf_token %}
+                        <p>
+                            <input type="text" placeholder="Titre" name="title" id="title" required>
+                        </p>
+                        <p>
+                            <input type="text" name="author" id="author" value="{{ user.username }}" readonly required>
+                        </p>
+                        <p>
+                            <textarea name="description" id="description" cols="30" rows="10" placeholder="Description" required></textarea>
+                        </p>
+                        <p>
+                            <input type="file" name="image" id="image" required>
+                        </p>
+                        <input type="hidden" name="token" value="FsWga4&@f6aw" />
+                        <p><input type="submit" id="form-submit" value="Créer l'annonce"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'blog/disposition.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chez S&B - Connexion</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <section class="login_box_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        <img class="img-fluid" src="{% static 'img/login.jpg' %}" alt="Login">
+                        <div class="hover">
+                            <h4>Nouveau sur notre site?</h4>
+                            <p>Découvrez notre collection de chaussures pour femmes et créez un compte dès maintenant pour profiter de nos offres exclusives!</p>
+                            <a class="primary-btn" href="{% url 'register' %}">Créer un compte</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="login_form_inner">
+                        <h3>Connexion</h3>
+                        <form class="row login_form" action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Nom d'utilisateur" required>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" required>
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <button type="Submit" class="primary-btn">Se connecter</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
+{% endblock content %}

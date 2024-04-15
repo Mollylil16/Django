@@ -1,0 +1,75 @@
+{% extends 'blog/disposition.html' %}
+{% load static %}
+{% block content %}
+
+	
+	<!-- section de la miette de pain -->
+	<div class="section-miette-pain miette-pain-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="texte-miette-pain">
+						<p>Besoin d'assistance 24/7</p>
+						<h1>Contactez-nous</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- fin de la section de la miette de pain -->
+
+	<!-- formulaire de contact -->
+	<div class="section-formulaire-contact mt-150 mb-150">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mb-5 mb-lg-0">
+					<div class="titre-formulaire">
+						<h2>Avez-vous une question ?</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione! Laboriosam est, assumenda. Perferendis, quo alias quaerat aliquid. Corporis ipsum minus voluptate? Dolore, esse natus!</p>
+					</div>
+				 	<div id="statut_formulaire"></div>
+					<div class="formulaire-contact">
+						<form id="requete" method="post" action="{% url 'contact' %}">
+							{% csrf_token %}
+							<p>
+								<input type="text" value="{{ user.username }}" name="nom" id="nom">
+							</p>
+							<p>
+								<input type="email" value="{{ user.email }}" name="email" id="email">
+							</p>
+							<p><textarea name="sujet" id="sujet" cols="30" rows="10" placeholder="Message" required></textarea></p>
+							<input type="hidden" name="jeton" value="FsWga4&@f6aw" />
+							<p><input type="submit" id="soumettre_formulaire"></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- fin du formulaire de contact -->
+
+	
+	<!-- jquery -->
+	<script src="{% static 'assets/js/jquery-1.11.3.min.js' %}"></script>
+	<!-- bootstrap -->
+	<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- compte à rebours -->
+	<script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+	<!-- isotope -->
+	<script src="{% static 'assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
+	<!-- waypoints -->
+	<script src="{% static 'assets/js/waypoints.js' %}"></script>
+	<!-- owl carousel -->
+	<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+	<!-- magnific popup -->
+	<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- menu moyen -->
+	<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+	<!-- autocollant js -->
+	<script src="{% static 'assets/js/sticker.js' %}"></script>
+	<!-- validation de formulaire js -->
+	<script src="{% static 'assets/js/form-validate.js' %}"></script>
+	<!-- principal js -->
+	<script src="{% static 'assets/js/main.js' %}"></script>
+	
+	{% endblock content %}
