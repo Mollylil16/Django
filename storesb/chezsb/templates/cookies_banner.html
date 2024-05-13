@@ -1,0 +1,32 @@
+<!-- cookies_banner.html -->
+<div class="cookies-banner">
+    <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur. Acceptez-vous l'utilisation des cookies ?</p>
+    <button id="accept-cookies">Accepter</button>
+    <button id="refuse-cookies">Refuser</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const acceptButton = document.getElementById('accept-cookies');
+    const refuseButton = document.getElementById('refuse-cookies');
+
+    acceptButton.addEventListener('click', function() {
+        // Logique pour accepter les cookies
+        // Par exemple : enregistrer une préférence dans le navigateur
+        document.cookie = "cookies_accepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        hideBanner();
+    });
+
+    refuseButton.addEventListener('click', function() {
+        // Logique pour refuser les cookies
+        // Par exemple : bloquer les cookies tiers
+        document.cookie = "cookies_accepted=false; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+        hideBanner();
+    });
+
+    function hideBanner() {
+        const banner = document.querySelector('.cookies-banner');
+        banner.style.display = 'none';
+    }
+});
+</script>

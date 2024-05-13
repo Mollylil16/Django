@@ -48,7 +48,7 @@
 					<div class="main-menu-wrap">
 						<!-- logo -->
 						<div class="site-logo">
-							<a href="{% url 'index' %}">
+							<a href="{% url 'acceuil' %}">
 								<img src="{% static 'assets/img/logo.png' %}" alt="">
 							</a>
 						</div>
@@ -57,32 +57,29 @@
 						<!-- menu start -->
 						<nav class="main-menu">
 							<ul>
-								<li class="current-list-item"><a href="{% url 'index' %}">Accueil</a>
-								</li>
-								<li><a href="{% url 'catalogue' %}">catalogue</a>
-								</li>
+								<li class="current-list-item"><a href="{% url 'acceuil' %}">Acceuil</a></li>
+								<li><a href="{% url 'catalogue' %}">Catalogue</a></li>
 								<li><a href="{% url 'contact' %}">Contact</a></li>
-								</li>								
-								{% if user.is_authenticated %}
-								{% if user.is_superuser %}
 								
-								<li><a href="{% url 'create_article' %}">Ajouter un article</a></li>
-								{% else %}					
-								<li><a href="">Profil ({{user.username}})</a></li>
-								<li><a href="{% url 'create_annonce' %}">Créer une annonce</a></li>
-								{% endif %}
-								<li><a href="{% url 'logout' %}">Déconnexion</a></li>
+								{% if user.is_authenticated %}
+									{% if user.is_superuser %}
+										<li><a href="{% url 'create_article' %}">Ajouter un article</a></li>
+									{% else %}					
+										<li><a href="">Profil ({{user.username}})</a></li>
+										<li><a href="{% url 'create_annonce' %}">Créer une annonce</a></li>
+									{% endif %}
+									<li><a href="{% url 'logout' %}">Déconnexion</a></li>
 								{% else %}
-
-								<!-- connexion -->
-								<li><a >Compte</a>
-									<ul class="sub-menu">
-										<li><a href="{% url 'register' %}">Connexion</a></li>
-										<li><a href="{% url 'register' %}">Inscription</a></li>
-									</ul>
-								</li>
-								<!-- end connexion -->
+									<!-- connexion -->
+									<li><a href="#">Compte</a>
+										<ul class="sub-menu">
+											<li><a href="{% url 'login' %}">Connexion</a></li>
+											<li><a href="{% url 'register' %}">Inscription</a></li>
+										</ul>
+									</li>
+									<!-- end connexion -->
 								{% endif %}
+								
 								<li>
 									<div class="header-icons">
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
@@ -151,18 +148,19 @@
 					<div class="footer-box pages">
 						<h2 class="widget-title">Pages</h2>
 						<ul>
-							<li><a href="{% url 'index' %}">Accueil</a></li>
-							<li><a href="{% url 'catalogue' %}">catalogue</a></li>
+							<li><a href="{% url 'acceuil' %}">Accueil</a></li>
+							<li><a href="{% url 'catalogue' %}">Catalogue</a></li>
 							<li><a href="{% url 'contact' %}">Contact</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-6">
-					<div class="footer-box subscribe">
+					<div class="footer-box register">
 						<h2 class="widget-title">Abonnez-vous</h2>
 						<p>Inscrivez-vous à notre liste de diffusion pour obtenir les dernières mises à jour.</p>
-						<form action="index.html">
-							<input type="email" placeholder="Email">
+						<form action="{% url 'register' %}" method="post">
+							{% csrf_token %}
+							<input type="email" name="email" placeholder="Email">
 							<button type="submit"><i class="fas fa-paper-plane"></i></button>
 						</form>
 					</div>

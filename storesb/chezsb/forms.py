@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm , SetPasswordForm , PasswordResetForm
 from django.contrib.auth import get_user_model
-from .models import Article
+from .models import Article, Commentaire, Product
 
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField(help_text='Une adresse e-mail valide, s\'il vous plaît.', required=False)
@@ -33,4 +33,25 @@ class UserLoginForm(AuthenticationForm):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ['titre', 'auteur', 'description', 'image']
+        fields = ['titre', 'contenu']
+
+class CommentaireForm(forms.ModelForm):
+    class Meta:
+        model = Commentaire
+        fields = ['auteur', 'contenu']
+
+class AddToCartForm(forms.Form):
+    quantity = forms.IntegerField(min_value=1, label='Quantité')
+
+class CheckoutForm(forms.Form):
+    shipping_address = forms.CharField(max_length=100, label='Adresse de livraison')
+
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price', 'quantity']
+
+class ContactForm(forms.Form):
+    name = forms.CharField(label='Nom', max_length=100)
+    email = forms.EmailField(label='Email')
+    message = forms.CharField(label='Message', widget=forms.Textarea)

@@ -28,14 +28,14 @@
 			<div class="col-lg-8">
 				<div class="single-article-section">
 					<div class="single-article-text">
-						<a href=""><img src="{{ articles.image.url }}" alt="" id="image-{{ article.id }}"></a>
+						<a href=""><img src="{{ article.image.url }}" alt="" id="image-{{ article.id }}"></a>
 						<p class="blog-meta">
 							<span class="author"><i class="fas fa-user"></i> <span
-									id="author-{{ article.author_id }}">{{ articles.author }}</span></span>
+									id="author-{{ article.author_id }}">{{ article.author }}</span></span>
 							<span class="date"><i class="fas fa-calendar"></i> <span
-									id="date-{{ article.date_created_id }}"> {{ articles.date_created }}</span></span>
+									id="date-{{ article.date_created_id }}"> {{ article.date_created }}</span></span>
 						</p>
-						<h2><span id="title-{{ article.title_id }}">{{ articles.title }}</span></h2>
+						<h2><span id="title-{{ article.title_id }}">{{ article.title }}</span></h2>
 						<p>{{ articles.description }}</p>
 					</div>
 
